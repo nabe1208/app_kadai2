@@ -4,49 +4,56 @@
 </head>
 
 <body>
-
- <h2>Books</h2>
-<!--一覧表示-->
-
-<!--@books = Book.all-->
- <% @books.each do |book| %> <!--eachに＝は不要-->
-
-  <div class="record">
-
-   <p>title</p>
-   <span><%= book.title %></span>
-
-   <p>body</p>
-   <span><%= book.body %></span>
-
-   <span>
-    <%= link_to "show",book_path(book.id) %><!--変更必要-->
-   </span>
-
-  </div>
-
- <% end %>
-
-
-
-<!--投稿機能フォーム-->
-
-<h2>New book</h2>
-<!--@book = Book.new-->
- <%= form_with model:@book do |f| %><!--Viewに使用するフォームのヘルパーメソッド-->
-
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-
-  <h4>Body</h4>
-  <%= f.text_area :body %>
-
-  <%= f.submit "create Book" %>
-
- <% end %>
-
-
-
-
+ 
+ <header>
+  <h2>Books</h2>
+ </header>
+ <!--一覧表示-->
+ 
+ <!--@books = Book.all-->
+ <div class="book-table">
+  <table>
+   <thead>
+    <tr>
+     <th>title</th>
+     <th>body</th>
+    </tr>
+  </thead> 
+  
+  <% @books.each do |book| %> <!--eachに＝は不要-->
+  <tbody>
+    <tr>
+     <td><%= book.title %></td>
+     <td><%= book.body %></td>
+     <td>
+      <span><%= link_to "Show",book_path(book.id) %></span>
+     </td>
+    </tr>
+  </tbody>
+   
+ 
+  <% end %>
+  </table>
+ 
+ 
+ 
+ <!--投稿機能フォーム-->
+ 
+ <h2>New book</h2>
+ <!--@book = Book.new-->
+  <%= form_with model:@book do |f| %><!--Viewに使用するフォームのヘルパーメソッド-->
+ 
+   <h4>Title</h4>
+   <%= f.text_field :title %>
+ 
+   <h4>Body</h4>
+   <%= f.text_area :body %>
+ 
+   <%= f.submit "create Book" %>
+ 
+  <% end %>
+ 
+ </div>
+ 
 </body>
 
