@@ -6,7 +6,7 @@
 <body>
   <h1>Books</h1>
   <!--一覧表示-->
-  
+
   <!--@books = Book.all-->
   <div class="book-table">
    <table width="750">
@@ -16,7 +16,7 @@
       <th>body</th>
      </tr>
    </thead>
-    
+
    <% @books.each do |book| %> <!--eachに＝は不要-->
    <tbody>
      <tr>
@@ -25,22 +25,22 @@
       <td>
        <span class="link2"><%= link_to "Show",book_path(book.id) %></span>
        <span class="link2"><%= link_to "Edit", edit_book_path(book.id) %></span>
-       <span class="link2"><%= link_to "Destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></span>
+       <span class="link2"><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></span>
       </td>
      </tr>
    </tbody>
-   
-   
+
+
    <% end %>
    </table>
-   
+
    <!--投稿機能フォーム-->
-   
+
    <h2>New book</h2>
    <!--@book = Book.new-->
-   
+
    <% if @book.errors.any? %><!--未入力時の検証if-->
-   <%= @book.errors.count %>prohibited this book from being saved:
+   <%= @book.errors.count %> errors prohibited this book from being saved:
     <div class="error">
      <ul>
       <% @book.errors.full_messages.each do |message| %>
@@ -49,17 +49,17 @@
      </ul>
     </div>
    <% end %>
-   
+
    <%= form_with model:@book do |f| %><!--Viewに使用するフォームのヘルパーメソッド-->
-    
+
     <div class="new-book">
      <p class="name">Title</p>
      <%= f.text_field :title %>
      <p class="name">Body</p>
      <%= f.text_area :body %>
-         
+
      <p class="switch">
-      <%= f.submit "create Book" %>
+      <%= f.submit "Create Book" %>
      </p>
     </div>
    <% end %>

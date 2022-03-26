@@ -7,7 +7,7 @@
 <!--@book = Book.find[params:id]-->
 
 <% if @book.errors.any? %><!--未入力時の検証if-->
- <%= @book.errors.count %>prohibited this book from being saved:
+ <%= @book.errors.count %> errors prohibited this book from being saved:
   <div class="error">
    <ul>
     <% @book.errors.full_messages.each do |message| %>
@@ -18,7 +18,7 @@
 <% end %>
 
 
-<%= form_with model: @book, url: update_book_path(@book.id), method: :patch do |f| %>
+<%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
 
  <p class="name">Title</p>
  <%= f.text_field :title %>
