@@ -1,14 +1,20 @@
 <!--@book = Book.find[params:id]-->
 
-<h2>Title: </h2>
-<%= @book.title %>
+<!--フラッシュメッセージ-->
+<% if flash[:notice] %>
+ <p id="notice"><%= flash[:notice] %></p>
+  <% end %>
 
-<h2>Body: </h2>
-<%= @book.body %>
+<p class="text2">
+ <span>Title: </span>
+ <%= @book.title %>
+</p>
+
+<p class="text2">
+ <span>Body: </span>
+ <%= @book.body %>
+</p>
 
 <p><%= link_to "Edit", edit_book_path %> |
 <%= link_to "Back", "/books" %></p>
-
-
-
 

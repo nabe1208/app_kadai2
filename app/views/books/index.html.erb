@@ -1,59 +1,68 @@
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="books.scss" type="text/css">
-</head>
+<!--フラッシュメッセージ-->
+<% if flash[:notice] %>
+ <p id="notice"><%= flash[:notice] %></p>
+  <% end %>
 
 <body>
- 
- <header>
-  <h2>Books</h2>
- </header>
- <!--一覧表示-->
- 
- <!--@books = Book.all-->
- <div class="book-table">
-  <table>
-   <thead>
-    <tr>
-     <th>title</th>
-     <th>body</th>
-    </tr>
-  </thead> 
+  <h1>Books</h1>
+  <!--一覧表示-->
   
-  <% @books.each do |book| %> <!--eachに＝は不要-->
-  <tbody>
-    <tr>
-     <td><%= book.title %></td>
-     <td><%= book.body %></td>
-     <td>
-      <span><%= link_to "Show",book_path(book.id) %></span>
-     </td>
-    </tr>
-  </tbody>
+  <!--@books = Book.all-->
+  <div class="book-table">
+   <table width="750">
+    <thead>
+     <tr>
+      <th>title</th>
+      <th>body</th>
+     </tr>
+   </thead>
+    
+   <% @books.each do |book| %> <!--eachに＝は不要-->
+   <tbody>
+     <tr>
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+      <td>
+       <span class="link2"><%= link_to "Show",book_path(book.id) %></span>
+       <span class="link2"><%= link_to "Edit", edit_book_path(book.id) %></span>
+       <span class="link2"><%= link_to "Destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></span>
+      </td>
+     </tr>
+   </tbody>
    
- 
-  <% end %>
-  </table>
- 
- 
- 
- <!--投稿機能フォーム-->
- 
- <h2>New book</h2>
- <!--@book = Book.new-->
-  <%= form_with model:@book do |f| %><!--Viewに使用するフォームのヘルパーメソッド-->
- 
-   <h4>Title</h4>
-   <%= f.text_field :title %>
- 
-   <h4>Body</h4>
-   <%= f.text_area :body %>
- 
-   <%= f.submit "create Book" %>
- 
-  <% end %>
- 
- </div>
- 
+   
+   <% end %>
+   </table>
+   
+   <!--投稿機能フォーム-->
+   
+   <h2>New book</h2>
+   <!--@book = Book.new-->
+   
+   <% if @book.errors.any? %><!--未入力時の検証if-->
+   <%= @book.errors.count %>prohibited this book from being saved:
+    <div class="error">
+     <ul>
+      <% @book.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+      <% end %>
+     </ul>
+    </div>
+   <% end %>
+   
+   <%= form_with model:@book do |f| %><!--Viewに使用するフォームのヘルパーメソッド-->
+    
+    <div class="new-book">
+     <p class="name">Title</p>
+     <%= f.text_field :title %>
+     <p class="name">Body</p>
+     <%= f.text_area :body %>
+         
+     <p class="switch">
+      <%= f.submit "create Book" %>
+     </p>
+    </div>
+   <% end %>
+  </div>
 </body>
 

@@ -3,14 +3,17 @@
   <head>
     <title>Bookers</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--追加部分--><link rel="stylesheet" href="bookers/app/assets/stylesheets/application.css">
+    <!--追加部分--><link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate static/css/translateelement.css">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!--↑ 全体のスタイルシートを生成するタグ-->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= yield %><!-- ← アクションで表示されるWebページの内容を読み込む -->
   </body>
 </html>
